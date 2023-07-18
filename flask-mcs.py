@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # In[1]:
-
+from IPython import get_ipython
 
 get_ipython().system('pip3 install flask')
 
