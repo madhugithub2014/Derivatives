@@ -8,7 +8,7 @@ RUN pip install numpy
 RUN pip install scipy
 RUN pip install flask  
 # RUN pip install matplotlib
-RUN pip install yahoo_fin
+# RUN pip install yahoo_fin
 
 COPY ./flask-mcs.py flask-mcs.py
 
