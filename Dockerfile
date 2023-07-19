@@ -5,7 +5,11 @@ RUN apk update
 RUN apk add py-pip
 RUN apk add --no-cache python3-dev 
 RUN pip install --upgrade pip
-RUN pip install numpy scipy pandas matplotlib yahoo_fin
+RUN pip install numpy
+RUN pip install scipy
+RUN pip install pandas   
+RUN pip install matplotlib
+RUN pip install yahoo_fin
 
 COPY ./flask-mcs.py flask-mcs.py
 
