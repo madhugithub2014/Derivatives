@@ -11,7 +11,7 @@
 
 from flask import Flask, jsonify, request
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import pandas as pd
 from yahoo_fin import options as op
 
