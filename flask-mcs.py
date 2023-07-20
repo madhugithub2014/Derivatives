@@ -120,8 +120,8 @@ def get_ticker_details(ticker):
 
 
 if __name__ == '__main__':
-    app.run()  # run our Flask app
-    #app.run(host='0.0.0.0',port=8080)
+    #app.run()  # run our Flask app
+    app.run(host='0.0.0.0',port=5000)
 
 
 # In[ ]:
