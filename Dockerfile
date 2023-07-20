@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM python:3.7-slim-strech
 
 # Installing packages
 # RUN apk update
@@ -6,7 +6,9 @@ FROM python:3.9-alpine
 # RUN pip install --upgrade pip
 RUN pip install numpy
 RUN pip install scipy
-RUN pip install flask  
+RUN pip install flask 
+RUN pip install pandas
+RUN pip install yahoo_fin
 # RUN pip install matplotlib
 # RUN pip install yahoo_fin
 
