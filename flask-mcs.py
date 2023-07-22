@@ -43,13 +43,13 @@ def calculate_mcs(spotPrice,strikePrice,time,volatility,steps,trials):
        
         spotPrice = float(spotPrice)
         strikePrice = float(strikePrice)
-        T = int(time)
+        T = float(time)
         volatility = float(volatility)
         steps = int(steps)
         trials = int(trials)
         
-        r = 0
-        q = 0;
+        r = 0.1
+        q = 0.1;
         
         paths= geo_paths(spotPrice,T,r,q,volatility,steps,trials)
         payoffs = np.maximum(paths[-1]-strikePrice, 0)
@@ -94,37 +94,34 @@ def get_symbols():
 # In[7]:
 
 
-ticker = 'AAPL'
-expDate = op.get_expiration_dates(ticker)
-callsData = op.get_calls(ticker,expDate[0]).head(1)
-print("for ticker => ",callsData)
+#callsData.columns
 
 
 # In[8]:
-
-
-callsData.columns
-
-
-# In[9]:
 
 
 @app.route("/symbol/details/<ticker>")
 def get_ticker_details(ticker):
     expDate = op.get_expiration_dates(ticker)
     callsData = op.get_calls(ticker,expDate[0]).head(1)
-    return callsData.to_json()
+    tickerDetails = {}
+    tickerDetails['lastTradeDate'] = callsData['Last Trade Date'].iloc[0]
+    tickerDetails['currentPrice'] = callsData['Last Price'].iloc[0]
+    tickerDetails['strikePrice'] = callsData['Strike'].iloc[0]
+    tickerDetails['expiryDate'] = expDate[0]
+    tickerDetails['impliedVolatility'] = callsData['Implied Volatility'].iloc[0]
+    tickerDetails['bid'] = callsData['Bid'].iloc[0]
+    tickerDetails['ask'] = callsData['Ask'].iloc[0]
+    
+    return tickerDetails
 
 
-# In[ ]:
+# In[9 ]:
 
 
 if __name__ == '__main__':
     #app.run()  # run our Flask app
     app.run(host='0.0.0.0',port=5000)
-
-
-# In[ ]:
 
 
 
