@@ -6,7 +6,8 @@ FROM python:3.10.2-buster
 # RUN pip install --upgrade pip
 RUN pip install numpy
 RUN pip install scipy
-RUN pip install flask 
+RUN pip install flask
+RUN pip install -U flask-cors
 RUN pip install pandas
 RUN pip install yahoo_fin
 # RUN pip install matplotlib
