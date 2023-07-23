@@ -535,6 +535,6 @@ def get_ticker_details(ticker):
     return tickerDetails
 
 if __name__ == '__main__':
-    pickle.dump(lm, open("model.pkl", "wb"))
+    #pickle.dump(lm, open("model.pkl", "wb"))
     app.run(debug=True, use_reloader=False, port=5020)
 
