@@ -40,6 +40,7 @@ from flask_cors import CORS
 from sklearn.preprocessing import MinMaxScaler
 from yahoo_fin import options as op
 
+"""
 pd.set_option('display.max_rows', 2000)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
@@ -429,6 +430,8 @@ r2_score(y_true=y_test, y_pred=y_pred)
 
 pickle.dump(lm, open("model.pkl", "wb"))
 lm = pickle.load(open("model.pkl", "rb"))
+"""
+
 app = Flask(__name__)
 
 CORS_ALLOW_ORIGIN="*,*"
