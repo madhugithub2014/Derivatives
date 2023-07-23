@@ -10,8 +10,11 @@ RUN pip install flask
 RUN pip install -U flask-cors
 RUN pip install pandas
 RUN pip install yahoo_fin
-# RUN pip install matplotlib
-# RUN pip install yahoo_fin
+RUN pip install matplotlib
+RUN pip install py_vollib
+RUN pip install seaborn
+RUN pip install statsmodels
+RUN pip install -U scikit-learn
 
 WORKDIR /home/dpmluser2/neve
 COPY . /home/dpmluser2/neve
