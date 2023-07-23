@@ -13,6 +13,7 @@ RUN pip install yahoo_fin
 # RUN pip install matplotlib
 # RUN pip install yahoo_fin
 
-COPY ./flask-mcs.py flask-mcs.py
+WORKDIR /home/dpmluser2/neve
+COPY . /home/dpmluser2/neve
 
-ENTRYPOINT ["python3", "flask-mcs.py"]
+ENTRYPOINT ["python3", "predict_option_call_price.py"]
