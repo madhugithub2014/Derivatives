@@ -21,18 +21,21 @@ from yahoo_fin import options as op
 
 
 app = Flask(__name__)
-cors = CORS(app)
+CORS_ALLOW_ORIGIN="*,*"
+CORS_EXPOSE_HEADERS="*,*"
+CORS_ALLOW_HEADERS="content-type,*"
+cors = CORS(app, origins=CORS_ALLOW_ORIGIN.split(","), allow_headers=CORS_ALLOW_HEADERS.split(",") , expose_headers= CORS_EXPOSE_HEADERS.split(","),   supports_credentials = True)
 
 
 # In[4]:
 
 
-@app.route("/")
+@app.route("/neve")
 def simulator_service():
     return "Up & Running !"
 
 
-@app.route("/mcs/<string:option_type>")
+@app.route("/neve/mcs/<string:option_type>")
 def derivative_option(option_type):
     result = {
         "simulator type":"Monte Carlo Simulation",
@@ -40,7 +43,7 @@ def derivative_option(option_type):
     }
     return jsonify(result)
 
-@app.route("/mcs/price/<spotPrice>/<strikePrice>/<time>/<volatility>/<steps>/<trials>")
+@app.route("/neve/mcs/price/<spotPrice>/<strikePrice>/<time>/<volatility>/<steps>/<trials>")
 def calculate_mcs(spotPrice,strikePrice,time,volatility,steps,trials):
        
         spotPrice = float(spotPrice)
@@ -85,7 +88,7 @@ def geo_paths(S, T, r, q, sigma, steps, N):
 # In[6]:
 
 
-@app.route("/symbols")
+@app.route("/neve/symbols")
 def get_symbols():
     sp_wiki_url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
     sp_wiki_df_list = pd.read_html(sp_wiki_url)
@@ -102,7 +105,7 @@ def get_symbols():
 # In[8]:
 
 
-@app.route("/symbol/details/<ticker>")
+@app.route("/neve/symbol/details/<ticker>")
 def get_ticker_details(ticker):
     expDate = op.get_expiration_dates(ticker)
     callsData = op.get_calls(ticker,expDate[0]).head(1)
