@@ -11,6 +11,7 @@
 
 from flask import Flask, jsonify, request
 import numpy as np
+from flask_cors import CORS 
 # import matplotlib.pyplot as plt
 import pandas as pd
 from yahoo_fin import options as op
@@ -20,6 +21,7 @@ from yahoo_fin import options as op
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 # In[4]:
