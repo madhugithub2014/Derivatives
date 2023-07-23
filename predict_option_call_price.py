@@ -536,5 +536,5 @@ def get_ticker_details(ticker):
 
 if __name__ == '__main__':
     #pickle.dump(lm, open("model.pkl", "wb"))
-    app.run(debug=True, use_reloader=False, port=5020)
+    app.run(host='0.0.0.0',port=5020)
 
