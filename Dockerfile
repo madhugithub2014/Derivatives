@@ -8,7 +8,7 @@ RUN pip install numpy
 RUN pip install scipy
 RUN pip install flask
 RUN pip install -U flask-cors
-RUN pip install 'pandas<2.0.0'
+RUN pip install pandas
 RUN pip install yahoo_fin
 RUN pip install matplotlib
 RUN pip install py_vollib
@@ -19,4 +19,4 @@ RUN pip install -U scikit-learn
 WORKDIR /home/dpmluser2/neve
 COPY . /home/dpmluser2/neve
 
-ENTRYPOINT ["python3", "predict_option_call_price.py"]
+ENTRYPOINT ["python3", "Restapi_endpoint.py"]
