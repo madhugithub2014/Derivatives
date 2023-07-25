@@ -8,7 +8,7 @@ RUN pip install numpy
 RUN pip install scipy
 RUN pip install flask
 RUN pip install -U flask-cors
-RUN pip install pandas
+RUN pip install pandas<2.0.0
 RUN pip install yahoo_fin
 RUN pip install matplotlib
 RUN pip install py_vollib
