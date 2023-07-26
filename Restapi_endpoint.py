@@ -140,7 +140,7 @@ def get_ticker_details(ticker):
             tickerDetails['bid'] = callsData.loc[i, "Bid"]
             tickerDetails['ask'] = callsData.loc[i, "Ask"]
         break
-return tickerDetails
+    return tickerDetails
 
 # Get the hostname
 #hostname = socket.gethostname()
