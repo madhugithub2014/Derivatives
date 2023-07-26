@@ -20,6 +20,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sklearn.preprocessing import MinMaxScaler
 from yahoo_fin import options as op
+from yahoo_fin import stock_info as info
 print(pd.__version__)
 app = Flask(__name__)
 
@@ -125,17 +126,20 @@ def get_symbols():
 
 @app.route("/neve/symbol/details/<ticker>")
 def get_ticker_details(ticker):
+    openPrice = info.get_live_price(ticker)
     expDate = op.get_expiration_dates(ticker)
-    callsData = op.get_calls(ticker,expDate[0]).head(1)
+    callsData = op.get_calls(ticker,expDate[5])
     tickerDetails = {}
-    tickerDetails['lastTradeDate'] = callsData['Last Trade Date'].iloc[0]
-    tickerDetails['currentPrice'] = callsData['Last Price'].iloc[0]
-    tickerDetails['strikePrice'] = callsData['Strike'].iloc[0]
-    tickerDetails['expiryDate'] = expDate[0]
-    tickerDetails['impliedVolatility'] = callsData['Implied Volatility'].iloc[0]
-    tickerDetails['bid'] = callsData['Bid'].iloc[0]
-    tickerDetails['ask'] = callsData['Ask'].iloc[0]
-    
+    for i in range(len(callsData)):
+        if float(callsData.loc[i, "Implied Volatility"].replace('%','')) > 0 :
+            tickerDetails['lastTradeDate'] = callsData.loc[i, "Last Trade Date"]
+            tickerDetails['currentPrice'] = openPrice
+            tickerDetails['strikePrice'] = callsData.loc[i, "Strike"]
+            tickerDetails['expiryDate'] = expDate[5]
+            tickerDetails['impliedVolatility'] = callsData.loc[i, "Implied Volatility"]
+            tickerDetails['bid'] = callsData.loc[i, "Bid"]
+            tickerDetails['ask'] = callsData.loc[i, "Ask"]
+        break
     return tickerDetails
 
 # Get the hostname
